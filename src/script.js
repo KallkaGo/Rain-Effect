@@ -49,8 +49,9 @@ window.addEventListener('resize', () => {
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.set(0.25, - 0.25, 1)
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
+// camera.position.set(0.25, - 0.25, 1)
+camera.position.set(0, 0, 0.1)
 scene.add(camera)
 
 // Controls
@@ -74,7 +75,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  * Test mesh
  */
 // Geometry
-const geometry = new THREE.PlaneGeometry(sizes.width, sizes.height, 32, 32)
+const geometry = new THREE.PlaneGeometry(10,10 , 32, 32)
 
 // Material
 

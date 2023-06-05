@@ -6,6 +6,8 @@ uniform float iTime;
 uniform vec3 iResolution;
 uniform sampler2D iChannel0;
 
+varying vec2 vUv;
+
 vec3 N13(float p) {
     //  from DAVE HOSKINS
   vec3 p3 = fract(vec3(p) * vec3(.1031, .11369, .13787));
@@ -139,8 +141,8 @@ void main() {
   float cy = Drops(uv + e.yx, t, staticDrops, layer1, layer2).x;
   vec2 n = vec2(cx - c.x, cy - c.x);		// expensive normals
     #endif
-
-  vec3 col = textureLod(iChannel0, UV + n, maxBlur).rgb;
+  // 使用Fragcoord算出来的UV在不同的屏幕上可能会造成贴图的拉伸
+  vec3 col = textureLod(iChannel0, UV + n, maxBlur + 0.1).rgb;
 
     //col = vec3(heart);
   gl_FragColor = vec4(col, 1.);
